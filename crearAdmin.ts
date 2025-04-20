@@ -6,7 +6,7 @@ import Usuario from "./models/Usuario";
 dotenv.config();
 
 async function crearAdmin() {
-  await mongoose.connect(process.env.MONGO_URI!);
+  await mongoose.connect(process.env.MONGODB_URI!);
 
   const hashedPassword = await bcrypt.hash("Ctr3107", 10);
 

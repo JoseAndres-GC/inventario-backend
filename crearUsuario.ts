@@ -6,7 +6,7 @@ import Usuario from "./models/Usuario";
 dotenv.config();
 
 async function run() {
-  await mongoose.connect(process.env.MONGO_URI!);
+  await mongoose.connect(process.env.MONGODB_URI!);
 
   const hashed = await bcrypt.hash("123456", 10);
 
