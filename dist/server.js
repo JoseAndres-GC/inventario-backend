@@ -18,7 +18,7 @@ app.use("/api/productos", productoRoutes_1.default);
 app.use("/api/pedidos", pedidoRoutes_1.default);
 app.use("/api/auth", authRoutes_1.default);
 mongoose_1.default
-    .connect(process.env.MONGO_URI)
+    .connect(process.env.MONGODB_URI)
     .then(() => {
     console.log("✅ Conectado a MongoDB");
     app.listen(process.env.PORT, () => console.log(`🚀 Servidor corriendo en el puerto ${process.env.PORT}`));

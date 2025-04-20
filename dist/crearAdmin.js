@@ -19,7 +19,7 @@ const Usuario_1 = __importDefault(require("./models/Usuario"));
 dotenv_1.default.config();
 function crearAdmin() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield mongoose_1.default.connect(process.env.MONGO_URI);
+        yield mongoose_1.default.connect(process.env.MONGODB_URI);
         const hashedPassword = yield bcryptjs_1.default.hash("Ctr3107", 10);
         const admin = new Usuario_1.default({
             nombre: "Administrador",
