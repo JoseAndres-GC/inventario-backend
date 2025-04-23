@@ -11,12 +11,24 @@ export const registrarPedido = async (
     const { productoId, cantidad, trabajadorId } = req.body;
 
     const producto = await Producto.findById(productoId);
+
     if (
       !producto ||
       typeof producto.cantidad !== "number" ||
+      typeof cantidad !== "number" ||
+      cantidad <= 0 ||
       producto.cantidad < cantidad
     ) {
-      res.status(400).json({ msg: "Stock insuficiente" });
+      res.status(400).json({ msg: "Cantidad inválida o stock insuficiente" });
+      return;
+    }
+
+    if (producto.medida === "Unidad" && !Number.isInteger(cantidad)) {
+      res
+        .status(400)
+        .json({
+          msg: "Solo puedes retirar cantidades enteras para productos por unidad",
+        });
       return;
     }
 
