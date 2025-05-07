@@ -34,16 +34,24 @@ export const obtenerProductoPorId = async (
   }
 };
 
-export const actualizarProducto = async (req: Request, res: Response) => {
-  const productoActualizado = await Producto.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
+export const actualizarProducto = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const productoActualizado = await Producto.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
 
-  if (!productoActualizado) {
-    return res.status(404).json({ mensaje: "Producto no encontrado" });
+    if (!productoActualizado) {
+      res.status(404).json({ mensaje: "Producto no encontrado" });
+      return;
+    }
+
+    res.json(productoActualizado);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error al actualizar el producto" });
   }
-
-  res.json(productoActualizado);
 };
