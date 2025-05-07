@@ -33,3 +33,17 @@ export const obtenerProductoPorId = async (
     res.status(500).json({ msg: "Error del servidor" });
   }
 };
+
+export const actualizarProducto = async (req: Request, res: Response) => {
+  const productoActualizado = await Producto.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+
+  if (!productoActualizado) {
+    return res.status(404).json({ mensaje: "Producto no encontrado" });
+  }
+
+  res.json(productoActualizado);
+};
