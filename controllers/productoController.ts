@@ -1,27 +1,18 @@
-import { Request, Response } from "express";
+import { RequestHandler } from "express";
 import Producto from "../models/Producto";
 
-export const obtenerProductos = async (
-  _: Request,
-  res: Response
-): Promise<void> => {
+export const obtenerProductos: RequestHandler = async (_, res) => {
   const productos = await Producto.find();
   res.json(productos);
 };
 
-export const crearProducto = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const crearProducto: RequestHandler = async (req, res) => {
   const nuevo = new Producto(req.body);
   await nuevo.save();
   res.json(nuevo);
 };
 
-export const obtenerProductoPorId = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const obtenerProductoPorId: RequestHandler = async (req, res) => {
   try {
     const producto = await Producto.findById(req.params.id);
     if (!producto) {
@@ -34,10 +25,7 @@ export const obtenerProductoPorId = async (
   }
 };
 
-export const actualizarProducto = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const actualizarProducto: RequestHandler = async (req, res) => {
   try {
     const productoActualizado = await Producto.findByIdAndUpdate(
       req.params.id,

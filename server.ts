@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import productoRoutes from "./routes/productoRoutes";
 import pedidoRoutes from "./routes/pedidoRoutes";
 import authRoutes from "./routes/authRoutes";
+import testRoutes from "./routes/testRoutes"; // 👈 importa la ruta
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api/productos", productoRoutes);
 app.use("/api/pedidos", pedidoRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/test", testRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URI!)
