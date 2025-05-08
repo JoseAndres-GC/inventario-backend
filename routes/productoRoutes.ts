@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.get("/", verificarToken, obtenerProductos);
 router.get("/:id", verificarToken, obtenerProductoPorId);
-router.post("/", verificarToken, soloAdmin, crearProducto);
+router.post("/", verificarToken, crearProducto);
 
 export default router;
