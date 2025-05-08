@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import productoRoutes from "./routes/productoRoutes";
 import pedidoRoutes from "./routes/pedidoRoutes";
 import authRoutes from "./routes/authRoutes";
-import testRoutes from "./routes/testRoutes"; // 👈 importa la ruta
+import testRoutes from "./routes/testRoutes";
 
 dotenv.config();
 const app = express();
